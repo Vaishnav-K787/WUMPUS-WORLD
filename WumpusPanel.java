@@ -24,22 +24,20 @@ public class WumpusPanel extends JPanel implements KeyListener{
         setBounds(0,0,600,800);
         try
         {
-            //buffer = new BufferedImage();
-            floor = ImageIO.read(new File("C:\\Users\\k2110689\\Downloads\\Images-20240425T183203Z-001\\Images\\floor.gif"));
-            arrow = ImageIO.read(new File("C:\\Users\\k2110689\\Downloads\\Images-20240425T183203Z-001\\Images\\arrow.gif"));
-            fog = ImageIO.read(new File("C:\\Users\\k2110689\\Downloads\\Images-20240425T183203Z-001\\Images\\black.gif"));
-            gold = ImageIO.read(new File("C:\\Users\\k2110689\\Downloads\\Images-20240425T183203Z-001\\Images\\gold.gif"));
-            ladder = ImageIO.read(new File("C:\\Users\\k2110689\\Downloads\\Images-20240425T183203Z-001\\Images\\ladder.gif"));
-            pit = ImageIO.read(new File("C:\\Users\\k2110689\\Downloads\\Images-20240425T183203Z-001\\Images\\pit.gif"));
-            breeze = ImageIO.read(new File("C:\\Users\\k2110689\\Downloads\\Images-20240425T183203Z-001\\Images\\breeze.gif"));
-            wumpus = ImageIO.read(new File("C:\\Users\\k2110689\\Downloads\\Images-20240425T183203Z-001\\Images\\wumpus.gif"));
-            deadWumpus = ImageIO.read(new File("C:\\Users\\k2110689\\Downloads\\Images-20240425T183203Z-001\\Images\\deadWumpus.gif"));
-            stench = ImageIO.read(new File("C:\\Users\\k2110689\\Downloads\\Images-20240425T183203Z-001\\Images\\stench.gif"));
-            playerUp = ImageIO.read(new File("C:\\Users\\k2110689\\Downloads\\Images-20240425T183203Z-001\\Images\\playerUp.png"));
-            playerDown = ImageIO.read(new File("C:\\Users\\k2110689\\Downloads\\Images-20240425T183203Z-001\\Images\\playerDown.png"));
-            playerLeft = ImageIO.read(new File("C:\\Users\\k2110689\\Downloads\\Images-20240425T183203Z-001\\Images\\playerLeft.png"));
-            playerRight = ImageIO.read(new File("C:\\Users\\k2110689\\Downloads\\Images-20240425T183203Z-001\\Images\\playerRight.png"));
-
+            floor = ImageIO.read(new File("floor.gif"));
+            arrow = ImageIO.read(new File("arrow.gif"));
+            fog = ImageIO.read(new File("black.gif"));
+            gold = ImageIO.read(new File("gold.gif"));
+            ladder = ImageIO.read(new File("ladder.gif"));
+            pit = ImageIO.read(new File("pit.gif"));
+            breeze = ImageIO.read(new File("breeze.gif"));
+            wumpus = ImageIO.read(new File("wumpus.gif"));
+            deadWumpus = ImageIO.read(new File("deadWumpus.gif"));
+            stench = ImageIO.read(new File("stench.gif"));
+            playerUp = ImageIO.read(new File("playerUp.png"));
+            playerDown = ImageIO.read(new File("playerDown.png"));
+            playerLeft = ImageIO.read(new File("playerLeft.png"));
+            playerRight = ImageIO.read(new File("playerRight.png"));
         }
         catch(Exception e)
         {
@@ -160,17 +158,14 @@ public class WumpusPanel extends JPanel implements KeyListener{
     }
     @Override
     public void keyTyped(KeyEvent e){
-        System.out.println("HERE");
         if(status == PLAYING){
             if(e.getKeyChar() == 'd'){
                 if(player.getRowPosition() + 1 < map.NUM_ROWS){
                     player.setRowPosition(player.getRowPosition() + 1);
                     if(map.getSquare(player.getColPosition(),player.getRowPosition()).getWumpus()){
-                        System.out.println("WUMPUS BAD BAD BAD");
                         status = DEAD;
                     }
                     if(map.getSquare(player.getColPosition(),player.getRowPosition()).getPit()){
-                        System.out.println("PIT BAD BAD BAD");
                         status = DEAD;
                     }
                     map.getSquare(player.getColPosition(),player.getRowPosition()).setVisited(true);
@@ -181,11 +176,9 @@ public class WumpusPanel extends JPanel implements KeyListener{
                 if(player.getRowPosition() > 0){
                     player.setRowPosition(player.getRowPosition() - 1);
                     if(map.getSquare(player.getColPosition(),player.getRowPosition()).getWumpus()){
-                        System.out.println("WUMPUS BAD BAD BAD");
                         status = DEAD;
                     }
                     if(map.getSquare(player.getColPosition(),player.getRowPosition()).getPit()){
-                        System.out.println("PIT BAD BAD BAD");
                         status = DEAD;
                     }
                     map.getSquare(player.getColPosition(),player.getRowPosition()).setVisited(true);
@@ -197,11 +190,9 @@ public class WumpusPanel extends JPanel implements KeyListener{
                 if(player.getColPosition() + 1 < map.NUM_COLUMNS){
                     player.setColPosition(player.getColPosition() + 1);
                     if(map.getSquare(player.getColPosition(),player.getRowPosition()).getWumpus()){
-                        System.out.println("WUMPUS BAD BAD BAD");
                         status = DEAD;
                     }
                     if(map.getSquare(player.getColPosition(),player.getRowPosition()).getPit()){
-                        System.out.println("PIT BAD BAD BAD");
                         status = DEAD;
                     }
                     map.getSquare(player.getColPosition(),player.getRowPosition()).setVisited(true);
@@ -212,11 +203,9 @@ public class WumpusPanel extends JPanel implements KeyListener{
                 if(player.getColPosition() > 0){
                     player.setColPosition(player.getColPosition() - 1);
                     if(map.getSquare(player.getColPosition(),player.getRowPosition()).getWumpus()){
-                        System.out.println("WUMPUS BAD BAD BAD");
                         status = DEAD;
                     }
                     if(map.getSquare(player.getColPosition(),player.getRowPosition()).getPit()){
-                        System.out.println("PIT BAD BAD BAD");
                         status = DEAD;
                     }
                     map.getSquare(player.getColPosition(),player.getRowPosition()).setVisited(true);
@@ -228,9 +217,7 @@ public class WumpusPanel extends JPanel implements KeyListener{
                     map.getSquare(player.getColPosition(),player.getRowPosition() + 1).setWumpus(false);
                     map.getSquare(player.getColPosition(),player.getRowPosition() + 1).setDeadWumpus(true);
                     messages.append("You hear a scream.\n");
-                    System.out.println("He's dead");
                 }
-                System.out.println("No arrows left");
                 player.setDirection(player.EAST);
                 player.setArrow(false);
             }
@@ -239,9 +226,7 @@ public class WumpusPanel extends JPanel implements KeyListener{
                     map.getSquare(player.getColPosition(),player.getRowPosition() - 1).setWumpus(false);
                     map.getSquare(player.getColPosition(),player.getRowPosition() - 1).setDeadWumpus(true);
                     messages.append("You hear a scream.\n");
-                    System.out.println("He's dead");
                 }
-                System.out.println("No arrows left");
                 player.setDirection(player.WEST);
                 player.setArrow(false);
             }
@@ -251,7 +236,6 @@ public class WumpusPanel extends JPanel implements KeyListener{
                     map.getSquare(player.getColPosition() + 1,player.getRowPosition()).setDeadWumpus(true);
                     messages.append("You hear a scream.\n");
                 }
-                System.out.println("No arrows left");
                 player.setDirection(player.SOUTH);
                 player.setArrow(false);
             }
@@ -260,16 +244,13 @@ public class WumpusPanel extends JPanel implements KeyListener{
                     map.getSquare(player.getColPosition() - 1,player.getRowPosition()).setWumpus(false);
                     map.getSquare(player.getColPosition() - 1,player.getRowPosition()).setDeadWumpus(true);
                     messages.append("You hear a scream.\n");
-                    System.out.println("He's dead");
                 }
-                System.out.println("No arrows left");
                 player.setDirection(player.NORTH);
                 player.setArrow(false);
             }
             else if(e.getKeyChar() == 'c'){
                 if(player.getColPosition() == map.getLadderC() && player.getRowPosition() == map.getLadderR() && player.getGold()){
                     status = WON;
-                    System.out.println("WIN");
                 }
             }
             else if(e.getKeyChar() == 'p' && map.getSquare(player.getColPosition(),player.getRowPosition()).getGold()){
@@ -278,7 +259,6 @@ public class WumpusPanel extends JPanel implements KeyListener{
             }
             else if(e.getKeyChar() == '*'){
                 CHEATING = !CHEATING;
-                System.out.println(CHEATING);
             }
         }
         else if(e.getKeyChar() == 'n' && (status == WON || status == DEAD) ){

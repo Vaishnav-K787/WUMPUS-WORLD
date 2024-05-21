@@ -226,6 +226,5 @@ public class WumpusMap {
     }
     public static void main(String[] args) {
         WumpusMap wm = new WumpusMap();
-        System.out.println(wm.toString());
     }
 }
